@@ -17,7 +17,8 @@ $allTodos = TodoItem::getAllTodos($userID);
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div>
+    <div id="app">
+        <div class="dashboard-wrapper">
     <h2>Todos</h2>
     <form method="post">
     <div class="add-todo">
@@ -27,22 +28,33 @@ $allTodos = TodoItem::getAllTodos($userID);
     </form>    
     <ul>
                 <?php foreach($allTodoLists as $list): ?>
-                    <li><?php echo $list["title"] ?><button class="delete-list" data-listid="<?php echo $list["id"] ?>">-</button></li>
+                    <li class="todo-list">
+                    <div class="element-holder">
+                    <span><?php echo $list["title"] ?></span>
+                    <div>
+                    <button class="delete-list" data-listid="<?php echo $list["id"] ?>"><img src="./assets/delete.svg" alt=""></button>
+                    <button class="add-item" data-listid="<?php echo $list["id"] ?>">+</button>
+                    </div>
+                    </div>
+                    <div class="element-holder">
                     <?php foreach($allTodos as $item): ?>
                         <?php if($item["listID"]==$list['id']){?>
-                            <li><?php echo $item['text'] ?></li> 
+                            <span> - <?php echo $item['text'] ?></span>
+                            <div>
                             <?php if($item["done"] == 0) {?>
-                                <img data-itemid="<?php echo $item["id"] ?>" class="unchecked-square" src="./assets/unchecked.png" alt="unchecked-square">
-                            <?php } else { ?>
-                                <img data-itemid="<?php echo $item["id"] ?>" class="checked-square" src="./assets/checked.png" alt="checked-square">
-                            <?php }?>
-                            <button class="delete-item" data-itemid="<?php echo $item["id"] ?>">delete item</button>
-                            <?php if($item["comment"]) echo "-" . $item["comment"]  ?>
-                            <button data-itemid="<?php echo $item["id"] ?>" class="add-comment">Comment</button>
-                        <?php } ?>
-                        <?php endforeach; ?>
-                     <button class="add-item" data-listid="<?php echo $list["id"] ?>">+</button>
+                                <img data-itemid="<?php echo $item["id"] ?>" class="unchecked-square" src="./assets/unchecked-box.svg" alt="unchecked-square">
+                                <?php } else { ?>
+                                    <img data-itemid="<?php echo $item["id"] ?>" class="checked-square" src="./assets/checked-box.svg" alt="checked-square">
+                                    <?php }?>
+                                    <button class="delete-item" data-itemid="<?php echo $item["id"] ?>"><img src="./assets/delete.svg" alt=""></button>
+                                    <?php if($item["comment"]) echo "-" . $item["comment"]  ?>
+                                    <button data-itemid="<?php echo $item["id"] ?>" class="add-comment"><img src="./assets/comment.svg" alt=""></button>
+                                    <?php } ?>
+                                    <?php endforeach; ?>
+                                    </div> 
+                                 </div>
                     <?php endforeach; ?>
+                    </li>
             </ul>
     </div>
         <dialog class="add-comment-dialog">
@@ -57,6 +69,7 @@ $allTodos = TodoItem::getAllTodos($userID);
         <button type="submit" class="add-item-dialog">add item</button>
         </form>
     </dialog>
+</div>
         </body>
 <script src="app.js"></script>
 </html>
