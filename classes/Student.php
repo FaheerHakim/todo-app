@@ -36,7 +36,8 @@ class Student extends User {
             $statement->execute();
             $user = $statement->fetch();
             $hash = $user['password'];
-           if(password_verify($password, $hash)) {
+            if(password_verify($password, $hash)) {
+            $this->setUserID($user['id']);
             return true;
            } else {
             return false;

@@ -2,12 +2,19 @@
 
 class User
 {
-
+        private $userID;
         private $username;
         private $email;
         private $password;
 
+        public function getUserID() {
+                return $this->userID;
+        }
 
+        public function setUserID($userID) {
+                $this->userID = $userID;
+                return $this;
+        }
         public function setUsername($username)
         {
                 if (empty($username)) {

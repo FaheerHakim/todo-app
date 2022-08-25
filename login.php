@@ -8,8 +8,9 @@ if(!empty($_POST)) {
         if($user->can_login($email, $password)) {
             session_start();
             $_SESSION["email"] = $email;
+            $_SESSION["userID"] = $user->getUserID();
             // TODO: Redirect to dashboard
-            header("location:index.php");
+            header("location:dashboard.php");
         } else {
            $error = "Invalid email or password!";
         }
