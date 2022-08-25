@@ -52,7 +52,7 @@ if(!empty($_POST)) {
 </head>
 <body>
     <div id="app">
-<form action="" method="post">
+<form method="post" class="signup-form">
 <?php if (isset($error)) : ?>
                 <div>
                     <p>

@@ -29,7 +29,7 @@ if(!empty($_POST)) {
 <body>
  
     <div id="app">
-        <form action="" method="post">
+        <form method="post" class="login-form">
         <?php if (isset($error)) : ?>
                 <div>
                     <p>
