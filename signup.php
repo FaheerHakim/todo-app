@@ -22,6 +22,7 @@ if(!empty($_POST)) {
     
     
                 session_start();
+                // TODO: set user ID in cookies
                 $_SESSION['user'] = $_POST["email"];
                 // TODO: Redirect to dashboard
                 header('location:index.php');
